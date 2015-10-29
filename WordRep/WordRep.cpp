@@ -2,7 +2,7 @@
 
 WordRep::WordRep(int iter, int window, int min_count, int table_size, int word_dim, int negative,
 	float subsample_threshold, float init_alpha, float min_alpha, int num_threads, string model, bool binary):
-iter(iter),  window(window), min_count(min_count), table_size(table_size), word_dim(word_dim), 
+iter(iter),  window(window), min_count(min_count), table_size(table_size), word_dim(word_dim),
 	negative(negative), subsample_threshold(subsample_threshold), init_alpha(init_alpha),
 	min_alpha(min_alpha), num_threads(num_threads), model(model), binary(binary),
 	generator(rd()), distribution_table(0, table_size - 1),
@@ -11,7 +11,7 @@ iter(iter),  window(window), min_count(min_count), table_size(table_size), word_
 	doc_num = 0;
 	total_words = 0;
 	ep = numeric_limits<float>::epsilon();
-} 
+}
 
 WordRep::~WordRep(void)
 {
@@ -165,12 +165,12 @@ void WordRep::build_vocab(string filename, string mor_file)
 	{
 		W_vocab[i]->index = i;
 	}
-	
+
 	make_table(this->W_table, this->W_vocab);
-	
+
 	precalc_sampling();
 
-	if(model == "seing" || model == "boeing")
+	if(model == "seing" || model == "being")
 	{
 		segment_vocab(mor_file);
 		make_table(this->M_table, this->M_vocab);
@@ -216,7 +216,7 @@ vector<vector<Word *>> WordRep::build_docs(string filename)
 }
 
 
-void WordRep::negative_sampling(float alpha, Word * predict_word, RowVectorXf& project_rep, RowVectorXf& project_grad, 
+void WordRep::negative_sampling(float alpha, Word * predict_word, RowVectorXf& project_rep, RowVectorXf& project_grad,
 	                            RMatrixXf& target_matrix, vector<size_t>& table)
 {
 	unordered_map<size_t, uint8_t> targets;
@@ -278,7 +278,7 @@ void WordRep::train_seing(vector<vector<Word *>>& docs)
 				int reduced_window = distribution_window(generator);
 				int index_begin = max(0, j - window + reduced_window);
 				int index_end = min((int)doc_len, j + window + 1 - reduced_window);
-				
+
 				//outer
 				for(int m = index_begin; m < index_end; ++m)
 				{
@@ -306,7 +306,7 @@ void WordRep::train_seing(vector<vector<Word *>>& docs)
 
 					W.row(current_word->index) += alpha * neu1_grad;
 				}
-				
+
 			}
 
             #pragma omp atomic
@@ -315,7 +315,7 @@ void WordRep::train_seing(vector<vector<Word *>>& docs)
 	}
 }
 
-void WordRep::train_boeing(vector<vector<Word *>>& docs)
+void WordRep::train_being(vector<vector<Word *>>& docs)
 {
 	vector<int> sample_idx(docs.size());
 	std::iota(sample_idx.begin(), sample_idx.end(), 0);
@@ -357,7 +357,7 @@ void WordRep::train_boeing(vector<vector<Word *>>& docs)
 				RowVectorXf neu1 = RowVectorXf::Zero(word_dim);
 				RowVectorXf neu1_grad = RowVectorXf::Zero(word_dim);
 
-				vector<size_t> c_idx; 
+				vector<size_t> c_idx;
 				for(int m = index_begin; m < index_end; ++m)
 				{
 					if(m == j) continue;
@@ -419,8 +419,8 @@ void WordRep::train(string filename, string mor_file)
 
 	if(model == "seing")
 		train_seing(docs);
-	else if(model == "boeing")
-		train_boeing(docs);
+	else if(model == "being")
+		train_being(docs);
 }
 
 void WordRep::save_vocab(string vocab_filename)
@@ -439,7 +439,7 @@ void WordRep::save_vec(string filename, const RMatrixXf& data, vector<Word *>& v
 	{
 		std::ofstream out(filename, std::ios::binary);
 		char blank = ' ';
-		char enter = '\n'; 
+		char enter = '\n';
 		int size = sizeof(char);
 		int r_size = data.cols() * sizeof(RMatrixXf::Scalar);
 
@@ -472,4 +472,3 @@ void WordRep::save_vec(string filename, const RMatrixXf& data, vector<Word *>& v
 		out.close();
 	}
 }
-

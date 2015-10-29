@@ -11,7 +11,7 @@ iter(iter),  window(window), min_count(min_count), table_size(table_size), word_
 	doc_num = 0;
 	total_words = 0;
 	ep = numeric_limits<float>::epsilon();
-} 
+}
 
 PhraseRep::~PhraseRep(void)
 {
@@ -142,7 +142,7 @@ void PhraseRep::build_vocab(string filename)
 		C_vocab_hash[p->text] = WordP(w);
 	}
 
-	if(model == "seing" || model == "boeing" || model == "cwecbow")
+	if(model == "seing" || model == "being" || model == "cwecbow")
 		segment_vocab();
 
 	make_table(this->C_table, this->C_vocab);
@@ -217,7 +217,7 @@ vector<vector<Word *>> PhraseRep::build_docs(string filename)
 	return std::move(docs);
 }
 
-void PhraseRep::negative_sampling(float alpha, Word* predict_word, RowVectorXf& project_rep, RowVectorXf& project_grad, 
+void PhraseRep::negative_sampling(float alpha, Word* predict_word, RowVectorXf& project_rep, RowVectorXf& project_grad,
 	                            RMatrixXf& target_matrix, vector<size_t>& table)
 {
 	unordered_map<size_t, uint8_t> targets;
@@ -404,7 +404,7 @@ void PhraseRep::train_seing(vector<vector<Word *>>& docs)
 				int reduced_window = distribution_window(generator);
 				int index_begin = max(0, j - window + reduced_window);
 				int index_end = min((int)doc_len, j + window + 1 - reduced_window);
-				
+
 				//outer
 				for(int m = index_begin; m < index_end; ++m)
 				{
@@ -438,7 +438,7 @@ void PhraseRep::train_seing(vector<vector<Word *>>& docs)
 	}
 }
 
-void PhraseRep::train_boeing(vector<vector<Word *>>& docs)
+void PhraseRep::train_being(vector<vector<Word *>>& docs)
 {
 	vector<int> sample_idx(docs.size());
 	std::iota(sample_idx.begin(), sample_idx.end(), 0);
@@ -544,8 +544,8 @@ void PhraseRep::train(string filename)
 		train_cbow(docs);
 	else if(model == "seing")
 		train_seing(docs);
-	else if(model == "boeing")
-		train_boeing(docs);
+	else if(model == "being")
+		train_being(docs);
 }
 
 void PhraseRep::save_vocab(vector<Word *>& vocab, string vocab_filename)
@@ -564,7 +564,7 @@ void PhraseRep::save_vec(string filename, const RMatrixXf& data, vector<Word *>&
 	{
 		std::ofstream out(filename, std::ios::binary);
 		char blank = ' ';
-		char enter = '\n'; 
+		char enter = '\n';
 		int size = sizeof(char);
 		int r_size = data.cols() * sizeof(RMatrixXf::Scalar);
 

@@ -1,4 +1,4 @@
-﻿//g++ main.cpp PhraseRep.cpp -od2v -I/usr/local/include/eigen/ -std=c++11 -O3 -march=native -funroll-loops -lm -fopenmp
+﻿//g++ main.cpp PhraseRep.cpp -op2v -I/usr/local/include/eigen/ -std=c++11 -O3 -march=native -funroll-loops -lm -fopenmp
 #include "PhraseRep.h"
 
 void help()

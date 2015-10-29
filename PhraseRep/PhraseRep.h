@@ -89,11 +89,10 @@ public:
 	void train_cbow(vector<vector<Word *>>& docs);
 
 	void train_seing(vector<vector<Word *>>& docs);
-	void train_boeing(vector<vector<Word *>>& docs);
+	void train_being(vector<vector<Word *>>& docs);
 
 	void train(string filename);
 
 	void save_vocab(vector<Word *>& vocab, string vocab_filename);
 	void save_vec(string filename, const RMatrixXf& data, vector<Word *>& vocab, bool binary=false);
 };
-

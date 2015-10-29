@@ -69,7 +69,7 @@ public:
 public:
 	WordRep(int iter=5, int window=10, int min_count=5, int table_size=100000000, int word_dim=400,
 		int negative=0, float subsample_threshold=0.0001,float init_alpha=0.025,
-		float min_alpha=1e-6, int num_threads=1, string model="boeing", bool binary=false);
+		float min_alpha=1e-6, int num_threads=1, string model="being", bool binary=false);
 	~WordRep(void);
 
 	vector<vector<string>> line_docs(string filename);
@@ -85,11 +85,10 @@ public:
 		                   RMatrixXf& target_matrix, vector<size_t>& table);
 
 	void train_seing(vector<vector<Word *>>& docs);
-	void train_boeing(vector<vector<Word *>>& docs);
+	void train_being(vector<vector<Word *>>& docs);
 
 	void train(string filename, string mor_file);
 
 	void save_vocab(string vocab_filename);
 	void save_vec(string filename, const RMatrixXf& data, vector<Word *>& vocab, bool binary=false);
 };
-

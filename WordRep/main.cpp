@@ -1,4 +1,4 @@
-﻿//g++ main.cpp WordRep.cpp -od2v -I/usr/local/include/eigen/ -std=c++11 -O3 -march=native -funroll-loops -lm -fopenmp
+﻿//g++ main.cpp WordRep.cpp -ow2v -I/usr/local/include/eigen/ -std=c++11 -O3 -march=native -funroll-loops -lm -fopenmp
 #include "WordRep.h"
 
 void help()
@@ -37,7 +37,7 @@ void help()
 	cout << "\t-model <string>" << endl;
 	cout << "\t\tThe model; default is continuous bag of words model(cbow) (use sg for skip-gram model)" << endl;
 	cout << "\nExamples:" << endl;
-	cout << "./wordrep -train data.txt -mor_file vocab_seg.txt -word_output vec.txt -size 200 -window 10 -subsample 1e-4 -negative 10 -model boeing -binary 0 -iter 20" << endl;
+	cout << "./wordrep -train data.txt -mor_file vocab_seg.txt -word_output vec.txt -size 200 -window 10 -subsample 1e-4 -negative 10 -model being -binary 0 -iter 20" << endl;
 }
 
 int ArgPos(char *str, int argc, char **argv)
@@ -69,7 +69,7 @@ int main(int argc, char* argv[])
 	string w_output_file = "";
 	string save_vocab_file = "";
 	string read_vocab_file = "";
-	string model = "boeing";
+	string model = "being";
 	int table_size = 100000000;
 	int word_dim = 100;
 	float init_alpha = 0.025f;
