@@ -29,13 +29,13 @@ void help()
 	cout << "\t-min-count <int>" << endl;
 	cout << "\t\tThis will discard words that appear less than <int> times; default is 5" << endl;
 	cout << "\t-alpha <float>" << endl;
-	cout << "\t\tSet the starting learning rate; default is 0.025 for HDC and 0.05 for PDC" << endl;
+	cout << "\t\tSet the starting learning rate; default is 0.025 for SEING and 0.05 for BEING" << endl;
 	cout << "\t-binary <int>" << endl;
 	cout << "\t\tSave the resulting vectors in binary moded; default is 0 (off)" << endl;
 	cout << "\t-save-W_vocab <file>" << endl;
 	cout << "\t\tThe vocabulary will be saved to <file>" << endl;
 	cout << "\t-model <string>" << endl;
-	cout << "\t\tThe model; default is continuous bag of words model(cbow) (use sg for skip-gram model)" << endl;
+	cout << "\t\tThe model; default is Continuous Bag of External and Internal Gram model(being) (use seing for Skip External and Internal Gram model)" << endl;
 	cout << "\nExamples:" << endl;
 	cout << "./wordrep -train data.txt -mor_file vocab_seg.txt -word_output vec.txt -size 200 -window 10 -subsample 1e-4 -negative 10 -model being -binary 0 -iter 20" << endl;
 }
