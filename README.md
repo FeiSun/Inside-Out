@@ -7,10 +7,9 @@ Two Jointly Predictive Models for Word Representations and Phrase Representation
 This is a toolkit developed for learning the word representations. 
 `BEING` and `SEING` are two unsupervised learning algorithms for word representations using both external contexts and internal morphemes in a jointly predictive way.
 
-```
-Contact: Fei Sun, Institute Of Computing Technology, ofey.sunfei@gmail.com, 
-Project page: http://ofey.me/projects/InsideOut
-```
+For more details, see project page: 
+
+[http://ofey.me/projects/InsideOut/](http://ofey.me/projects/InsideOut/)
 
 
 ## Citation
